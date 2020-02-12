@@ -1,0 +1,37 @@
+body {
+    background-image: url("../images/tweede_kamer.jpeg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.stemwijzer-container {
+    padding: 50px 40px;
+    background: white;
+}
+
+.stemwijzer-container p {
+    font-size: 18px;
+}
+
+.questions-container {
+    padding: 50px 40px;
+    background: white;
+}
+
+.questions-container p {
+    font-size: 18px;
+}
+
+.next-question {
+    font-size: 18px;
+    color: lightgrey;
+}
+
+.next-question:hover {
+    color: darkgrey;
+    text-decoration: none;
+}
+
+.button-group button {
+    font-size: 18px;
+}
