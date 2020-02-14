@@ -20,6 +20,7 @@ function getQuestion(answer) {
 
             var container = document.getElementById("result-container");
             container.classList.remove("d-none");
+            getResult();
             return;
         }
         if (subjects[count].statement) {
@@ -44,10 +45,8 @@ function saveAnswer(answer, question) {
     var test = [answer, question];
     answers.push(test);
     console.log(answers);
-
-    getResult();
 }
 
 function getResult() {
-    for(a = 0; a )
+    console.log("result");
 }
