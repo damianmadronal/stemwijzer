@@ -9,6 +9,11 @@ body {
     background: white;
 }
 
+.result-container {
+    padding: 50px 40px;
+    background: white;
+}
+
 .stemwijzer-container p {
     font-size: 18px;
 }
@@ -34,4 +39,8 @@ body {
 
 .button-group button {
     font-size: 18px;
+}
+
+.color {
+    color: #01b4dc;
 }

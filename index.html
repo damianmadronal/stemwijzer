@@ -10,8 +10,8 @@
             integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
             crossorigin="anonymous"
         />
-        <script src="http://stemwijzer.dvc-icta.nl/data.js"></script>
         <link rel="stylesheet" href="style/style.css" />
+        <script src="scripts/data.js"></script>
         <script
             src="https://kit.fontawesome.com/a15bfdfa1d.js"
             crossorigin="anonymous"
@@ -25,9 +25,11 @@
                         id="stemwijzer-container"
                         class="stemwijzer-container mt-4"
                     >
-                        <h1><span class="text-danger">Stem</span>Wijzer</h1>
-                        <p>StemWijzer Tweede Kamer 2020</p>
-                        <p class="text-danger">
+                        <h1><span class="color">Stem</span>Wijzer</h1>
+                        <p class="font-weight-bold">
+                            StemWijzer Tweede Kamer 2020
+                        </p>
+                        <p class="color font-weight-bold">
                             Test uw politieke voorkeur aan de hand van 30
                             stellingen
                         </p>
@@ -41,21 +43,52 @@
                     >
                         <div class="row">
                             <div class="col">
+                                <h2 id="questionTitle"></h2>
+                                <p id="questionBox"></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
                                 <div class="button-group">
-                                    <button class="btn btn-dark">Eens</button>
-                                    <button class="btn btn-dark">
+                                    <button
+                                        onclick="getQuestion('pro')"
+                                        class="btn btn-dark"
+                                    >
+                                        Eens
+                                    </button>
+
+                                    <button
+                                        onclick="getQuestion(0)"
+                                        class="btn btn-dark"
+                                    >
                                         Geen van beide
                                     </button>
-                                    <button class="btn btn-dark">Oneens</button>
+
+                                    <button
+                                        onclick="getQuestion('contra')"
+                                        class="btn btn-dark"
+                                    >
+                                        Oneens
+                                    </button>
                                 </div>
                             </div>
                             <div class="col text-right text-muted">
-                                <a href="#" class="next-question">
+                                <a
+                                    onclick="getQuestion(0)"
+                                    href="#"
+                                    class="next-question"
+                                >
                                     Deze vraag overslaan
                                     <i class="fas fa-arrow-circle-right"></i>
                                 </a>
                             </div>
                         </div>
+                    </div>
+                    <div
+                        id="result-container"
+                        class="result-container d-none mt-4"
+                    >
+                        Result Here >
                     </div>
                 </div>
             </div>
