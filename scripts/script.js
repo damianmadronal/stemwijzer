@@ -6,36 +6,41 @@ function start() {
     // makeCheckboxes();
     var container = document.getElementById("stemwijzer-container");
     container.classList.add("d-none");
+
     var container = document.getElementById("questions-container");
     container.classList.remove("d-none");
     getQuestion();
 }
+function getQuestion() {
+    var question = subjects[count].statement;
+    var title = subjects[count].title;
+    count++;
+    document.getElementById("questionBox").innerHTML = question;
+    document.getElementById("questionTitle").innerHTML = count + ". " + title;
+    count--;
+}
 
-console.log(subjects.statement);
-function getQuestion(answer) {
-    for (i = 0; i <= count; i++) {
-        if (!subjects[count]) {
-            var container = document.getElementById("questions-container");
-            container.classList.add("d-none");
+function answerQuestion(answer) {
+    if (!subjects[count]) {
+        var container = document.getElementById("questions-container");
+        container.classList.add("d-none");
 
-            var container = document.getElementById("result-container");
-            container.classList.remove("d-none");
-            getResult();
-            return;
-        }
-        if (subjects[count].statement) {
-            var question = subjects[count].statement;
-            var title = subjects[count].title;
-            count++;
-            document.getElementById("questionBox").innerHTML = question;
-            document.getElementById("questionTitle").innerHTML =
-                count + ". " + title;
-            count--;
-        }
+        var container = document.getElementById("result-container");
+        container.classList.remove("d-none");
+        getResult();
+        return;
     }
 
-    if (count > 0) {
-        saveAnswer(answer, subjects[count].statement);
+    saveAnswer(answer, subjects[count].statement);
+
+    if (subjects[count].statement) {
+        count++;
+        var question = subjects[count].statement;
+        var title = subjects[count].title;
+        document.getElementById("questionBox").innerHTML = question;
+        document.getElementById("questionTitle").innerHTML =
+            count + ". " + title;
+        count--;
     }
 
     count++;
