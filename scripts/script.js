@@ -1,57 +1,25 @@
-var count = 0;
-
-var answers = [];
+var currentQuestion = 0;
 
 function start() {
-    // makeCheckboxes();
-    var container = document.getElementById("stemwijzer-container");
-    container.classList.add("d-none");
-
-    var container = document.getElementById("questions-container");
-    container.classList.remove("d-none");
-    getQuestion();
-}
-function getQuestion() {
-    var question = subjects[count].statement;
-    var title = subjects[count].title;
-    count++;
-    document.getElementById("questionBox").innerHTML = question;
-    document.getElementById("questionTitle").innerHTML = count + ". " + title;
-    count--;
+    document.getElementById("stemwijzer-container").classList.add("d-none");
+    document.getElementById("questions-container").classList.remove("d-none");
+    setQuestion();
 }
 
-function answerQuestion(answer) {
-    if (!subjects[count]) {
-        var container = document.getElementById("questions-container");
-        container.classList.add("d-none");
-
-        var container = document.getElementById("result-container");
-        container.classList.remove("d-none");
-        getResult();
-        return;
-    }
-
-    saveAnswer(answer, subjects[count].statement);
-
-    if (subjects[count].statement) {
-        count++;
-        var question = subjects[count].statement;
-        var title = subjects[count].title;
-        document.getElementById("questionBox").innerHTML = question;
+function setQuestion() {
+    if (subjects[currentQuestion]) {
         document.getElementById("questionTitle").innerHTML =
-            count + ". " + title;
-        count--;
+            currentQuestion + 1 + ". " + subjects[currentQuestion].title;
+        document.getElementById("questionBox").innerHTML =
+            subjects[currentQuestion].statement;
+    } else {
+        document.getElementById("questions-container").classList.add("d-none");
+        document.getElementById("result-container").classList.remove("d-none");
     }
-
-    count++;
 }
 
-function saveAnswer(answer, question) {
-    var test = [answer, question];
-    answers.push(test);
-    console.log(answers);
-}
-
-function getResult() {
-    console.log("result");
+function saveQuestion(answer) {
+    subjects[currentQuestion].answer = answer;
+    currentQuestion++;
+    setQuestion();
 }
