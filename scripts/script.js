@@ -15,11 +15,19 @@ function setQuestion() {
     } else {
         document.getElementById("questions-container").classList.add("d-none");
         document.getElementById("result-container").classList.remove("d-none");
+        getResult();
     }
 }
 
 function saveQuestion(answer) {
     subjects[currentQuestion].answer = answer;
+    console.log(subjects[currentQuestion].answer);
     currentQuestion++;
     setQuestion();
 }
+
+function getResult() {}
+
+// function showResult() {
+
+// }
