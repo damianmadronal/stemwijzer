@@ -1,46 +1,83 @@
+html,
 body {
-    background-image: url("../images/tweede_kamer.jpeg");
-    background-size: cover;
-    background-repeat: no-repeat;
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently */
+
+  background-image: url("../images/background.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
-.stemwijzer-container {
-    padding: 50px 40px;
-    background: white;
+#stemwijzer-container > .subText {
+  color: #01b4dc;
 }
 
-.result-container {
-    padding: 50px 40px;
-    background: white;
-}
+.containers {
+  -webkit-box-shadow: 3px 3px 12px -1px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 3px 3px 12px -1px rgba(0, 0, 0, 0.75);
+  box-shadow: 3px 3px 12px -1px rgba(0, 0, 0, 0.75);
 
-.stemwijzer-container p {
-    font-size: 18px;
-}
-
-.questions-container {
-    padding: 50px 40px;
-    background: white;
-}
-
-.questions-container p {
-    font-size: 18px;
+  font-size: 18px;
+  max-height: 95vh;
+  overflow-y: scroll;
 }
 
 .next-question {
-    font-size: 18px;
-    color: lightgrey;
+  font-size: 18px;
+  color: lightgrey;
 }
 
 .next-question:hover {
-    color: darkgrey;
-    text-decoration: none;
+  color: darkgrey;
+  text-decoration: none;
 }
 
-.button-group button {
-    font-size: 18px;
+.back-button {
+  cursor: pointer;
 }
 
-.color {
-    color: #01b4dc;
+.configuration {
+  height: 200px;
+}
+
+.result-container-grid {
+  display: grid;
+  grid-template-columns: 25% auto;
+}
+
+.filter-size,
+.filter-secular {
+  display: none !important;
+}
+
+/* PROGRESS BAR */
+.place-container {
+  display: block;
+  width: 300px;
+  height: 40px;
+  margin: 12px;
+}
+.progress {
+  height: 12px;
+  position: relative;
+  background: #f3efe6;
+  overflow: hidden;
+}
+.progress span {
+  display: block;
+  height: 100%;
+}
+.progress_animation {
+  background-color: #01b4dc;
+  animation: progressBar 1500ms ease-in-out;
+  animation-fill-mode: both;
+}
+@keyframes progressBar {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
 }

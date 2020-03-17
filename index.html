@@ -3,7 +3,9 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>test</title>
+
+        <title>Stemwijzer</title>
+
         <link
             rel="stylesheet"
             href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -11,25 +13,32 @@
             crossorigin="anonymous"
         />
         <link rel="stylesheet" href="style/style.css" />
-        <script src="scripts/data.js"></script>
+
         <script
             src="https://kit.fontawesome.com/a15bfdfa1d.js"
             crossorigin="anonymous"
         ></script>
     </head>
-    <body>
+
+    <body onload="loadVotes();">
         <div class="container">
             <div class="row">
                 <div class="col">
                     <div
                         id="stemwijzer-container"
-                        class="stemwijzer-container mt-4"
+                        class="containers bg-white p-4 mt-4"
                     >
-                        <h1><span class="color">Stem</span>Wijzer</h1>
+                        <h1>
+                            <img
+                                class="w-50"
+                                src="images/svg/logo-stemwijzer.svg"
+                                alt=""
+                            />
+                        </h1>
                         <p class="font-weight-bold">
                             StemWijzer Tweede Kamer 2020
                         </p>
-                        <p class="color font-weight-bold">
+                        <p class="subText font-weight-bold">
                             Test uw politieke voorkeur aan de hand van 30
                             stellingen
                         </p>
@@ -37,10 +46,17 @@
                             Start
                         </button>
                     </div>
+
                     <div
-                        id="questions-container"
-                        class="questions-container mt-4 d-none"
+                        id="question-container"
+                        class="containers bg-white p-4 mt-4 d-none"
                     >
+                        <div onclick="back();" class="back-button">
+                            <i class="fas fa-arrow-left"></i>
+                        </div>
+
+                        <hr />
+
                         <div class="row">
                             <div class="col">
                                 <h2 id="questionTitle"></h2>
@@ -51,21 +67,21 @@
                             <div class="col">
                                 <div class="button-group">
                                     <button
-                                        onclick="saveQuestion('pro')"
+                                        onclick="save('pro'); next();"
                                         class="btn btn-dark"
                                     >
                                         Eens
                                     </button>
 
                                     <button
-                                        onclick="saveQuestion(null)"
+                                        onclick="save(null); next();"
                                         class="btn btn-dark"
                                     >
                                         Geen van beide
                                     </button>
 
                                     <button
-                                        onclick="saveQuestion('contra')"
+                                        onclick="save('contra'); next();"
                                         class="btn btn-dark"
                                     >
                                         Oneens
@@ -74,7 +90,7 @@
                             </div>
                             <div class="col text-right text-muted">
                                 <a
-                                    onclick="getQuestion(0)"
+                                    onclick="next();"
                                     href="#"
                                     class="next-question"
                                 >
@@ -83,12 +99,127 @@
                                 </a>
                             </div>
                         </div>
+                        <div class="row mt-4">
+                            <div class="col">
+                                <div class="form-group">
+                                    <input
+                                        onclick="setWeight();"
+                                        id="checkbox-weight"
+                                        type="checkbox"
+                                    />
+                                    <label class="m-0" for="weight"
+                                        >Extra gewicht
+                                        <a href="#">(?)</a></label
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="jumbotron p-3 mb-1">
+                                    <div class="container">
+                                        <a
+                                            class="lead m-0 text-info"
+                                            data-toggle="collapse"
+                                            href="#opinionMenu"
+                                            aria-expanded="false"
+                                            aria-controls="opinionMenu"
+                                        >
+                                            Meer...
+                                        </a>
+                                    </div>
+                                    <div
+                                        class="collapse multi-collapse container mt-4"
+                                        id="opinionMenu"
+                                    >
+                                        <div
+                                            class="row justify-content-md-center"
+                                        >
+                                            <div class="col">
+                                                <p
+                                                    class="lead font-weight-bold border-bottom border-dark"
+                                                >
+                                                    Eens
+                                                </p>
+                                                <div
+                                                    class="opinion-container "
+                                                    id="opinion-eens-container"
+                                                ></div>
+                                            </div>
+                                            <div class="col">
+                                                <p
+                                                    class="lead font-weight-bold border-bottom border-dark"
+                                                >
+                                                    Geen van beide
+                                                </p>
+                                                <div
+                                                    class="opinion-container"
+                                                    id="opinion-none-container"
+                                                ></div>
+                                            </div>
+                                            <div class="col">
+                                                <p
+                                                    class="lead font-weight-bold border-bottom border-dark"
+                                                >
+                                                    Oneens
+                                                </p>
+                                                <div
+                                                    class="opinion-container"
+                                                    id="opinion-oneens-container"
+                                                ></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+
                     <div
                         id="result-container"
-                        class="result-container d-none mt-4"
+                        class="containers bg-white p-4 mt-4 d-none"
                     >
-                        REsult
+                        <div onclick="back();" class="back-button">
+                            <i class="fas fa-arrow-left"></i>
+                        </div>
+
+                        <hr />
+
+                        <div class="result-container-grid">
+                            <div class="configuration">
+                                <div class="configuration-menu p-2">
+                                    <div class="configuration-title">
+                                        <h4>Filters</h4>
+                                    </div>
+                                    <div class="configuration-item-container">
+                                        <div class="configuration-item">
+                                            <input
+                                                onclick="filter(this, 'size')"
+                                                type="checkbox"
+                                                name="size"
+                                            />
+                                            <label for="size"
+                                                >Grote partijen</label
+                                            >
+                                        </div>
+                                        <div class="configuration-item">
+                                            <input
+                                                onclick="filter(this, 'secular')"
+                                                type="checkbox"
+                                                name="secular"
+                                            />
+                                            <label for="secular"
+                                                >Seculiere partijen</label
+                                            >
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="d-flex justify-content-center">
+                                <div id="result-item-container"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -112,4 +243,7 @@
     crossorigin="anonymous"
 ></script>
 
+<script src="scripts/library/data.js"></script>
+<script src="scripts/library/library.js"></script>
+<script src="scripts/question.js"></script>
 <script src="scripts/script.js"></script>
